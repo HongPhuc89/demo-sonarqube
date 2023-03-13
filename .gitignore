@@ -1,0 +1,9 @@
+.venv/
+*.log
+*.pyc
+__pycache__/
+docker
+/static/
+# for anyone use PyCharm as IDE
+.idea
+/.mypy_cache
