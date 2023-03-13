@@ -4,20 +4,21 @@ on:
     workflows: ["Pytest Run"]
     types:
       - completed
+extends:
+  # the relative path to the workflow you want to extend
+  - ../.github/workflows/pytest.yml
 
 jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    container:
+      # specify the same container as the base workflow
+      image: ${{ job.container }}
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Download ccov XML from artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: coverage
-          path: .
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
