@@ -1,15 +1,14 @@
-name: Check Sonarwube
+name: Check Sonarqube
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_run:
+    workflows: ["Pytest Run"]
+    types:
+      - completed
+
 jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
-    needs: pytest
     steps:
       - uses: actions/checkout@v3
         with:
