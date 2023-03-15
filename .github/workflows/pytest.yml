@@ -46,7 +46,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: code-coverage-report
-          # path: coverage.xml
+          path: src
       - name: Show folder
         run: |
           ls
